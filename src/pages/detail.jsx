@@ -144,7 +144,6 @@ export default function Detail() {
       height: 75,
       margin: 5,
       alignSelf: "center", // Align the images vertically centered
-      marginHorizontal: 30,
     },
     image: {
       objectFit: "contain",
@@ -170,9 +169,25 @@ export default function Detail() {
       fontSize: 14,
       fontWeight: "bold",
     },
+    teamContainer: {
+      flexDirection: "column",
+      alignItems: "center",
+      justifyContent: "center",
+      width: 200,
+      textAlign: "center",
+    },
     teamText: {
       fontSize: 14,
       fontWeight: "bold",
+      marginHorizontal: 10,
+      textAlign: "center",
+      paddingVertical: "16px",
+    },
+    teamContainers: {
+      flexDirection: "column",
+      fontSize: 12,
+      fontWeight: "bold",
+      paddingVertical: 5,
     },
   });
 
@@ -186,59 +201,57 @@ export default function Detail() {
           </View>
 
           <View style={styles.page}>
-            <>
+            {/* Home Team */}
+            <View style={styles.teamContainer}>
+              <View style={styles.teamText}>
+                <Text>{data ? data.home_team.name : ""}</Text>
+              </View>
               <View style={styles.imageContainer}>
                 <Image
                   style={styles.image}
                   src={data ? `${back}team/${data.home_team.logo}` : ""}
                 />
               </View>
-              <View style={styles.teamText}>
-                <Text>{data ? data.home_team.name : ""}</Text>{" "}
+              <View style={styles.teamContainers}>
+                <Text>Offsides : {offside[0]}</Text>
+                <Text>
+                  Possession : {data
+                    ? data.ballPossession[0]
+                      ? Math.round(data.ballPossession[0].possession_time) + "%"
+                      : "0"
+                    : "0"}
+                </Text>
               </View>
-            </>
-
-            <View>
-              <Text>{offside[0]}</Text>
-            </View>
-            <View>
-              <Text>
-                {" "}
-                {data
-                  ? data.ballPossession[0]
-                    ? Math.round(data.ballPossession[1].possession_time) + "%"
-                    : "0"
-                  : "0"}
-              </Text>
             </View>
 
+            {/* Score */}
             <View style={styles.scoreContainer}>
               <Text style={styles.scoreText}>{goalHome}</Text>
               <Text style={styles.scoreText}>-</Text>
               <Text style={styles.scoreText}>{goalAway}</Text>
             </View>
 
-            <View style={styles.imageContainer}>
-              <Image
-                style={styles.image}
-                src={data ? `${back}team/${data.away_team.logo}` : ""}
-              />
+            {/* Away Team */}
+            <View style={styles.teamContainer}>
+              <View style={styles.teamText}>
+                <Text>{data ? data.away_team.name : ""}</Text>
+              </View>
+              <View style={styles.imageContainer}>
+                <Image
+                  style={styles.image}
+                  src={data ? `${back}team/${data.away_team.logo}` : ""}
+                />
+              </View>
+              <View style={styles.teamContainers}>
+                <Text>Offsides : {offside[1]}</Text>
+                <Text>Possession : {data
+                    ? data.ballPossession[1]
+                      ? Math.round(data.ballPossession[1].possession_time) + "%"
+                      : "0"
+                    : "0"}
+                </Text>
+              </View>
             </View>
-            <View style={styles.teamText}>
-              {data ? data.away_team.name : ""}
-            </View>
-          </View>
-          <View>
-            <Text>{offside[1]}</Text>
-          </View>
-          <View>
-            <Text>
-              {data
-                ? data.ballPossession[1]
-                  ? Math.round(data.ballPossession[1].possession_time) + "%"
-                  : "0"
-                : "0"}
-            </Text>
           </View>
 
           {/* Table */}
