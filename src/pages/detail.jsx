@@ -176,7 +176,7 @@ export default function Detail() {
     },
   });
 
-  const MyDoc = ({ player, playerAway, dataMatch }) => (
+  const MyDoc = ({ player, playerAway }) => (
     <Document>
       <Page size="A4">
         <View style={styles.section}>
@@ -194,17 +194,22 @@ export default function Detail() {
                 />
               </View>
               <View style={styles.teamText}>
-                {data ? data.home_team.name : ""}
+                <Text>{data ? data.home_team.name : ""}</Text>{" "}
               </View>
             </>
 
-            <View>{offside[0]}</View>
             <View>
-              {data
-                ? data.ballPossession[0]
-                  ? Math.round(data.ballPossession[1].possession_time) + "%"
-                  : "0"
-                : "0"}
+              <Text>{offside[0]}</Text>
+            </View>
+            <View>
+              <Text>
+                {" "}
+                {data
+                  ? data.ballPossession[0]
+                    ? Math.round(data.ballPossession[1].possession_time) + "%"
+                    : "0"
+                  : "0"}
+              </Text>
             </View>
 
             <View style={styles.scoreContainer}>
@@ -223,13 +228,17 @@ export default function Detail() {
               {data ? data.away_team.name : ""}
             </View>
           </View>
-          <View>{offside[1]}</View>
           <View>
-            {data
-              ? data.ballPossession[1]
-                ? Math.round(data.ballPossession[1].possession_time) + "%"
-                : "0"
-              : "0"}
+            <Text>{offside[1]}</Text>
+          </View>
+          <View>
+            <Text>
+              {data
+                ? data.ballPossession[1]
+                  ? Math.round(data.ballPossession[1].possession_time) + "%"
+                  : "0"
+                : "0"}
+            </Text>
           </View>
 
           {/* Table */}
