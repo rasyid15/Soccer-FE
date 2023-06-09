@@ -193,14 +193,9 @@ export default function Detail() {
                   src={data ? `${back}team/${data.home_team.logo}` : ""}
                 />
               </View>
-              <View style={styles.teamText}>{data ? data.home_team.name : ""}</View>
-              <View style={styles.imageContainer}>
-                <Image
-                  style={styles.image}
-                  src={data ? `${back}team/${data.away_team.logo}` : ""}
-                />
+              <View style={styles.teamText}>
+                {data ? data.home_team.name : ""}
               </View>
-              <View style={styles.teamText}>{data ? data.away_team.name : ""}</View>
             </>
 
             <View>{offside[0]}</View>
@@ -218,17 +213,15 @@ export default function Detail() {
               <Text style={styles.scoreText}>{goalAway}</Text>
             </View>
 
-            {dataMatch.map((data, index) => (
-              <>
-                <View style={styles.imageContainer} key={index}>
-                  <Image
-                    style={styles.image}
-                    src={data ? `${back}team/${data.away_team.logo}` : ""}
-                  />
-                </View>
-                <View style={styles.teamText}>{data.away_team.name}</View>
-              </>
-            ))}
+            <View style={styles.imageContainer}>
+              <Image
+                style={styles.image}
+                src={data ? `${back}team/${data.away_team.logo}` : ""}
+              />
+            </View>
+            <View style={styles.teamText}>
+              {data ? data.away_team.name : ""}
+            </View>
           </View>
           <View>{offside[1]}</View>
           <View>
